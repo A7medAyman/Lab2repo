@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script src="cookielib.js"></script>
+
+<script>
+
+  setCookie("cst1", "html", "2030-01-01");
+  setCookie("cst2", "css", "2025-07-30");
+  setCookie("cst3", "javascript");
+
+  console.log(getCookie("cst1"));    
+
+  console.log(allCookieList());     
+
+  console.log(hasCookie("cst2"));          
+  deleteCookie("cst2");
+  console.log(hasCookie("cst2"))
+
+</script>
+    
+</body>
+</html>

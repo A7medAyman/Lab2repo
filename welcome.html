@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Profile</title>
+</head>
+<body>
+  <div id="profile"></div>
+
+  <script src="cookielib.js"></script>
+  <script>
+    function welcome() {
+      var name = getCookie("username");
+      var age = getCookie("age");
+      var gender = getCookie("gender");
+      var color = getCookie("color");
+      var visits = getCookie("visits");
+
+      if (!name || !age || !gender || !color || visits === null) {
+        alert("Missing data. Please register again.");
+        location.replace("registered.html");
+        return;
+      }
+
+      visits = parseInt(visits) + 1;
+      setCookie("visits", visits, "2025-08-05");
+
+      var img = gender === "male"
+        ? "<img src='1.jpg' width='100'>"
+        : "<img src='2.jpg' width='100'>";
+
+      document.getElementById("profile").innerHTML = `
+        ${img}
+        <h2 style="color:${color}">Welcome, ${name} (Age: ${age})</h2>
+        <p style="color:${color}">Visit count: ${visits}</p>
+      `;
+    }
+
+    welcome();
+  </script>
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Register</title>
+  <style>
+    img.gender {
+      width: 100px;
+    }
+    .radio{
+        margin-inline: 60px;
+    }
+  </style>
+</head>
+<body>
+  <h3>Enter your name:</h3>
+  <input type="text" id="username"><br><br>
+
+  <h3>Enter your age:</h3>
+  <input type="number" id="age"><br><br>
+
+  <h3>Select your Gender:</h3>
+  <img src="1.jpg" id="maleImg" class="gender" onclick="selectGender('male')">
+  <img src="2.jpg" id="femaleImg" class="gender" onclick="selectGender('female')">
+  <br>
+  <input class="radio" type="radio" name="gender" value="male" id="maleRadio">
+  <input class="radio" type="radio" name="gender" value="female" id="femaleRadio">
+
+  <h3>Select your favorite color:</h3>
+  <select id="color">
+    <option value="Red">Red</option>
+    <option value="Green">Green</option>
+    <option value="Blue">Blue</option>
+    <option value="Orange">Orange</option>
+  </select><br><br>
+
+  <button onclick="register()">Register</button>
+
+  <script src="cookielib.js"></script>
+  <script>
+    var selectedGender = null;
+
+    function selectGender(gender) {
+      selectedGender = gender;
+      
+      if (gender === "male") {
+        document.getElementById("maleImg").classList.add("selected");
+        document.getElementById("maleRadio").checked = true;
+      } else {
+        document.getElementById("femaleImg").classList.add("selected");
+        document.getElementById("femaleRadio").checked = true;
+      }
+    }
+
+    function register() {
+      var name = document.getElementById("username").value;
+      var age = document.getElementById("age").value;
+      var color = document.getElementById("color").value;
+
+      if (!name || !age || !selectedGender) {
+        alert("Please complete all fields.");
+        return;
+      }
+
+      // Save cookies
+      setCookie("username", name, "2025-08-01");
+      setCookie("age", age, "2025-08-01");
+      setCookie("gender", selectedGender, "2025-08-01");
+      setCookie("color", color, "2025-08-01");
+      setCookie("visits", 0, "2025-08-01");
+
+      // Go to profile
+      location.replace("welcome.html");
+    }
+  </script>
+</body>
+</html>
